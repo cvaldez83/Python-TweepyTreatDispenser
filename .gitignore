@@ -1,3 +1,8 @@
+#My specific ignore files
+venv
+keys.py
+
+# # # STANDARD FILES # # #
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
