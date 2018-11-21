@@ -1,6 +1,7 @@
 #My specific ignore files
 venv
 keys.py
+*.pyc
 
 # # # STANDARD FILES # # #
 # Byte-compiled / optimized / DLL files
