@@ -11,8 +11,8 @@ from tweepy import Stream
 from tweepy import API
 
 # # # # VARIABLES # # # # 
-fetched_tweets_filename = "tweets.json"
-debug_filename = 'debug.json'
+fetched_tweets_filename = "files/tweets.json"
+debug_filename = 'files/debug.json'
 listen_to_userID = ['1059557863775850496'] # reats4charlie user id
 charlie_pic_filename = 'media/charliespic.jpg'
 charlie_vid_filename = 'media/charliedetected.mp4'
@@ -74,8 +74,8 @@ class StdOutListener(StreamListener):
                 message = 'Hey '+ username[1:] + ', thanks for my treat!'
                 # cliente.twitter_client.update_status(str(username) + ' ' + message, tweet_id) # previous tweet id '1061689337312567296'
                 cliente.twitter_client.update_with_media(charlie_pic_filename,str(username) + ' ' + message, tweet_id) # previous tweet id '1061689337312567296'
-                os.remove(charlie_pic_filename)
-                os.remove(charlie_vid_filename)
+                #os.remove(charlie_pic_filename)
+                #os.remove(charlie_vid_filename)
             else:
                 message = 'Hi ' + username[1:] + ', oh gah, so full.. send me a treat later!'
                 cliente.twitter_client.update_status(str(username) + ' ' + message, tweet_id) # previous tweet id '1061689337312567296'

@@ -6,6 +6,10 @@ import cv2
 import numpy as np 
 import camconfig #my input file
 
+charlie_pic_filename = 'media/charliespic.jpg'
+charlie_vid_filename = 'media/charliedetected.h264'
+haar_file = 'files/dog.xml'
+
 def run():
     print('running DetectCharlie.py')
     #### TREAT DISPENSING FUNCTIONS ###
@@ -47,7 +51,7 @@ def run():
     time.sleep(camconfig.camera_warmup_time) #Rpi Exclusive
 
     #Load openCV xml of object to detect
-    cascade = cv2.CascadeClassifier('dog.xml')
+    cascade = cv2.CascadeClassifier(haar_file)
 
     tInitial = 0
     tTarget = 0
@@ -58,7 +62,7 @@ def run():
     camera.start_preview()
     time.sleep(1)
     print('recording started: charliedetected.h264')
-    camera.start_recording('media/charliedetected.h264')
+    camera.start_recording(charlie_vid_filename)
 
     for frame in camera.capture_continuous(rawCapture, format="bgr", use_video_port=True):
         print('current time: ' + str(time.time()))
@@ -98,7 +102,6 @@ def run():
         #if continuously spotted for longer than tTarget
         if flagSpotted and tInitial != 0 and time.time() > tTarget:
             print(str(time.time()-tInitial) + ' yup, thats charlie alright! ')
-            charlie_pic_filename = 'media/charliespic.jpg'
             camera.capture(charlie_pic_filename)
 ##            charlie_pic_filename.close()
             turnOnLED()
