@@ -6,7 +6,7 @@ def run():
     pygame.init()
 
     # # VARIABLES # #
-    sound_filename = 'CharlieComeHere.ogg'
+    sound_filename = 'media/CharlieComeHere.ogg'
 
     # Load sound file
     a = pygame.mixer.Sound(sound_filename)

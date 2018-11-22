@@ -14,8 +14,8 @@ from tweepy import API
 fetched_tweets_filename = "tweets.json"
 debug_filename = 'debug.json'
 listen_to_userID = ['1059557863775850496'] # reats4charlie user id
-charlie_pic_filename = 'charliespic.jpg'
-charlie_vid_filename = 'charliedetected.mp4'
+charlie_pic_filename = 'media/charliespic.jpg'
+charlie_vid_filename = 'media/charliedetected.mp4'
 
 # # # # TWITTER UATHENTICATE # # # # 
 CONSUMER_KEY = keys['consumer_key']

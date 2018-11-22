@@ -58,7 +58,7 @@ def run():
     camera.start_preview()
     time.sleep(1)
     print('recording started: charliedetected.h264')
-    camera.start_recording('charliedetected.h264')
+    camera.start_recording('media/charliedetected.h264')
 
     for frame in camera.capture_continuous(rawCapture, format="bgr", use_video_port=True):
         print('current time: ' + str(time.time()))
@@ -98,7 +98,7 @@ def run():
         #if continuously spotted for longer than tTarget
         if flagSpotted and tInitial != 0 and time.time() > tTarget:
             print(str(time.time()-tInitial) + ' yup, thats charlie alright! ')
-            charlie_pic_filename = 'charliespic.jpg'
+            charlie_pic_filename = 'media/charliespic.jpg'
             camera.capture(charlie_pic_filename)
 ##            charlie_pic_filename.close()
             turnOnLED()
