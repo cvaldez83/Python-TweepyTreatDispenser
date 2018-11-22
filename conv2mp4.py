@@ -5,8 +5,8 @@ import shlex
 def run():
 
     # completed_video= os.path.join(save_path, filename)
-    filename = os.path.join('media', 'charliedetected')
-    # filename = 'media/charliedetected'
+    filename= 'media/charliedetected'
+    
 
     #Conversion to usable file format
     print("Converting to mp4")
