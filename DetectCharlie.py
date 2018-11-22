@@ -1,10 +1,11 @@
-import RPi.GPIO as GPIO
+#import RPi.GPIO as GPIO
 from picamera.array import PiRGBArray
 from picamera import PiCamera 
 import time 
 import cv2  
 import numpy as np 
 import camconfig #my input file
+import dispense
 
 charlie_pic_filename = 'media/charliespic.jpg'
 charlie_vid_filename = 'media/charliedetected.h264'
@@ -12,29 +13,6 @@ haar_file = 'files/dog.xml'
 
 def run():
     print('running DetectCharlie.py')
-    #### TREAT DISPENSING FUNCTIONS ###
-    ## PIN OUTPUT STUFF ##
-    litePIN=16 #light pin
-    dispPIN = 21 #dispense pin
-    GPIO.setwarnings(False)
-    GPIO.setmode(GPIO.BCM)
-    GPIO.setup(dispPIN, GPIO.OUT)
-    GPIO.setup(litePIN, GPIO.OUT)
-
-    ## DISPENSE FUNCTION ##
-    def dispenseTreat(secs):
-            GPIO.output(litePIN, True)
-            time.sleep(.5)  #wait for assistant to finish response
-            GPIO.output(dispPIN, True)
-            time.sleep(secs)  #time alotted for treat dispensing
-            GPIO.output(dispPIN, False)
-            time.sleep(5)
-            GPIO.output(litePIN,False)
-    ## LED ON FUNCTION ##
-    def turnOnLED():
-            GPIO.output(litePIN, True)
-            time.sleep(.5)
-            GPIO.output(litePIN, False)
 
     #Initialize camera & grab reference to the raw camera capture
     camera = PiCamera()
@@ -65,8 +43,8 @@ def run():
     camera.start_recording(charlie_vid_filename)
 
     for frame in camera.capture_continuous(rawCapture, format="bgr", use_video_port=True):
-        print('current time: ' + str(time.time()))
-        print('rRecord time: ' + str(tRecord))
+        # print('current time: ' + str(time.time()))
+        # print('rRecord time: ' + str(tRecord))
         if reset == True: #While True:
             print('Resetting timers')
             tTarget = 0
@@ -104,8 +82,8 @@ def run():
             print(str(time.time()-tInitial) + ' yup, thats charlie alright! ')
             camera.capture(charlie_pic_filename)
 ##            charlie_pic_filename.close()
-            turnOnLED()
-            dispenseTreat(.1)
+            dispense.turnOnLED(.5)
+            dispense.dispenseTreat(.1)
             reset = True
         
         elif not flagSpotted and tInitial !=0 and time.time()>tTarget:

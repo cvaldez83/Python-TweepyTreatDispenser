@@ -14,5 +14,5 @@ contrast = 5
 #opencv settings
 scaleFactor = 1.2
 minNeighbors = 6
-detect_time = 2             #time it should take to ensure it's charlie
+detect_time = 1             #time it should take to ensure it's charlie
 recording_time = 30
